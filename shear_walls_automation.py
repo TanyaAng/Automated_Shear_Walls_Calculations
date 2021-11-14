@@ -1,43 +1,22 @@
 import openpyxl
-import numpy as np
-import pandas as pd
 from math import ceil
 
-workbook = openpyxl.load_workbook('Shear walls_TOWER.xlsx')
+workbook = openpyxl.load_workbook('Shear walls.xlsx')
 sheet = workbook['Shear Walls']
 
-
 REBARS_DIAMETER = [8, 10, 12, 14, 16, 18, 20, 22, 25, 28, 32]
-REBARS_CM2 = [0.503, 0.785, 1.131, 1.539, 2.011, 2.545, 3.142, 3.801, 4.909, 6.158]
-REBAR_WEIGHT = [0.395, 0.617, 0.888, 1.208, 1.998, 2.466, 2.984, 3.853, 4.834, 6.313, 7.990, 9.865]
-
-# not in use
-def find_starting_indices_of_required_reinfocement(row_indices, column_indices):
-    starting_indices = []
-    for x_indices in range(row_indices, 15):
-        for y_indices in range(column_indices, 15):
-            if sheet.cell(row=x_indices, column=y_indices).value == 'Aa1':
-                starting_indices.append(x_indices)
-                starting_indices.append(y_indices + 1)
-                break
-    return starting_indices
-
-# not in use
-def find_required_reinforcement(row_indices, column_indices):
-    requered_reinforcement = []
-    for index in range(row_indices, row_indices + 4):
-        requered_reinforcement.append(sheet.cell(row=index, column=column_indices).value)
-    return requered_reinforcement
+REBARS_CM2 = [0.503, 0.785, 1.131, 1.539, 2.011, 2.545, 3.142, 3.801, 4.909, 6.158, 8.042]
+REBAR_WEIGHT = [0.395, 0.617, 0.888, 1.208, 1.998, 2.466, 2.984, 3.853, 4.834, 6.313, 7.990]
 
 
 def find_head_size(row_indices, column_indices):
     column_size = []
-    for x_indices in range(row_indices, row_indices + 15):
-        for y_indices in range(column_indices, column_indices + 9):
-            if sheet.cell(row=x_indices, column=y_indices).value == 'глава':
-                column_size.append(sheet.cell(row=x_indices, column=y_indices + 4).value)
-                column_size.append(sheet.cell(row=x_indices, column=y_indices + 5).value)
-                break
+    # for x_indices in range(row_indices, row_indices + 8):
+    for y_indices in range(column_indices, column_indices + 10):
+        if sheet.cell(row=row_indices, column=y_indices).value == 'глава':
+            column_size.append(sheet.cell(row=row_indices, column=y_indices + 4).value)
+            column_size.append(sheet.cell(row=row_indices, column=y_indices + 5).value)
+            break
     return column_size
 
 
@@ -52,11 +31,14 @@ def calculate_rebars_in_head(height, width):
 def calculate_Aa1_Aa2(required_reinforcement, number_of_bars):
     required_diameter = required_reinforcement / number_of_bars
     for index in range(len(REBARS_CM2)):
-        if required_diameter <= REBARS_CM2[index]:
-            provided_diameter = REBARS_DIAMETER[index]
-            break
+        if required_diameter <= 1.539:
+            provided_diameter = 14
         else:
-            provided_diameter = 'Change column size!!!'
+            if required_diameter <= REBARS_CM2[index]:
+                provided_diameter = REBARS_DIAMETER[index]
+                break
+            else:
+                provided_diameter = 'Change column size!!!'
     return provided_diameter
 
 
@@ -83,7 +65,7 @@ def calculate_AaH(required_reinforcement):
 
 
 def calculate_AaV(required_reinforcement):
-    steps = [20, 15, 10]
+    steps = [20, 15]
     rebars_per_meter = [round(100 / x, 2) for x in steps]
     min_weight = 10000000
     index_of_min_rebar = 0
@@ -104,6 +86,7 @@ def calculate_AaV(required_reinforcement):
     return rebars_per_meter[index_of_min_step], REBARS_DIAMETER[index_of_min_rebar], steps[index_of_min_step]
 
 
+# This function works only for row index with two leters (example:HJ...)
 def find_required_index(starting_row, step):
     row_alpha = []
     row_digit = []
@@ -121,7 +104,7 @@ def find_required_index(starting_row, step):
             if ord(row_alpha[index]) < 90 - step:
                 next_row_alpha.append(chr(ord(row_alpha[index]) + step))
             else:
-                next_char_ASCII_index = 65 + 9 - (90 - ord(row_alpha[index]))
+                next_char_ASCII_index = 65 + (step - 1) - (90 - ord(row_alpha[index]))
                 next_row_alpha.append(chr(next_char_ASCII_index))
                 next_row_alpha.append('A')
 
@@ -136,7 +119,7 @@ def find_required_index(starting_row, step):
                         next_row_alpha.append('A')
                         break
                     else:
-                        next_char_ASCII_index = 65 + 9 - (90 - ord(row_alpha[index]))
+                        next_char_ASCII_index = 65 + (step - 1) - (90 - ord(row_alpha[index]))
                         next_row_alpha.append(chr(next_char_ASCII_index))
                         next_row_alpha.append('A')
                         break
@@ -145,7 +128,7 @@ def find_required_index(starting_row, step):
                     is_appended_next_symbol = True
                     continue
             if ord(row_alpha[index]) > 90 - step:
-                next_char_ASCII_index = 65 + 9 - (90 - ord(row_alpha[index]))
+                next_char_ASCII_index = 65 + (step - 1) - (90 - ord(row_alpha[index]))
                 next_row_alpha.append(chr(next_char_ASCII_index))
                 is_previous_bigger_than_Z = True
                 continue
@@ -155,69 +138,91 @@ def find_required_index(starting_row, step):
     return ''.join(list(reversed(next_row_alpha)) + row_digit)
 
 
-print("Starting Index of 'Aa1' for current Shear Wall: ", end='')
-starting_index_for_Aa1 = input()
-print("Starting Index of value for 'Aah' for current Shear Wall: ", end='')
-ending_index_for_Aah = input()
-print("Building levels for current Shear Wall: ", end='')
+def find_current_shear_wall_index(number_of_shear_wall):
+    next_starting_column = 'H8'
+    next_ending_column = 'H11'
+    if number_of_shear_wall >= 1:
+        list_alpha = []
+        list_digit = []
+        for symbol in next_starting_column:
+            if symbol.isdigit():
+                list_digit.append(symbol)
+            elif symbol.isalpha():
+                list_alpha.append(symbol)
+        string_of_digits = [str(el) for el in list_digit]
+        int_of_digits = int(''.join(string_of_digits))
+        next_starting_column = str(int_of_digits + 12 * (number_of_shear_wall))
+        string_of_alpha = ''.join(list_alpha)
+        next_starting_column = string_of_alpha + next_starting_column
+        list_alpha = []
+        list_digit = []
+        for symbol in next_ending_column:
+            if symbol.isdigit():
+                list_digit.append(symbol)
+            elif symbol.isalpha():
+                list_alpha.append(symbol)
+        string_of_digits = [str(el) for el in list_digit]
+        int_of_digits = int(''.join(string_of_digits))
+        next_ending_column = str(int_of_digits + 12 * (number_of_shear_wall))
+        string_of_alpha = ''.join(list_alpha)
+        next_ending_column = string_of_alpha + next_ending_column
+
+    return next_starting_column, next_ending_column
+
+
+print("Number of Shear Walls in Sheet: ", end='')
+number_of_shear_walls = int(input())
+print("Building levels for all Shear Walls: ", end='')
 building_levels = int(input())
-print("Valid starting index of row for head_size "
-      "(Hint: Choose '1' if it's first shear wall, and 'previous row index+15' for each other): ", end='')
-row_index_for_head_size = int(input())
-# for each Shear Wall column indeces start from 'F'=6
-column_index_for_head_size = 6
+row_index_for_head_size = 7
+for current_shear_wall in range(number_of_shear_walls):
+    column_index_for_head_size = 6
+    starting_index_for_current_wall = find_current_shear_wall_index(current_shear_wall)
+    index_for_Aa1 = starting_index_for_current_wall[0]
+    index_for_Aah = starting_index_for_current_wall[1]
+    print(f"<<< SHEAR WALL {current_shear_wall+1} >>>")
+    for level in range(building_levels):
+        print(f'Level:{level+1}')
+        # find choosen from engineer head size for each level and calculate number of rebars in it
+        head_size = find_head_size(row_index_for_head_size, column_index_for_head_size)
+        head_rebars = calculate_rebars_in_head(head_size[0], head_size[1])
+        print(f"{head_rebars} number of rebars in head {head_size}")
+        column_index_for_head_size += 10
+        if level == 0:
+            step = 0
+        else:
+            step = 10
+        start_row_index = find_required_index(index_for_Aa1, step)
+        end_row_index = find_required_index(index_for_Aah, step)
+        # searching for new values of required reinforcement starts from the last found indices
+        index_for_Aa1 = start_row_index
+        index_for_Aah = end_row_index
+        # read excel cell with required reinforcement for each level
+        cell_number = 0
+        for row in sheet[start_row_index: end_row_index]:
+            current_row_as_string = str(row)
+            dot_index = current_row_as_string.index('.')
+            compare_symbol_index = current_row_as_string.index('>')
+            current_row_as_string = current_row_as_string[dot_index + 1:compare_symbol_index]
+            for cell in row:
+                if cell_number == 0 or cell_number == 1:
+                    result = calculate_Aa1_Aa2(cell.value, head_rebars)
+                    print(f"{head_rebars}N{result}")
+                    sheet[find_required_index(current_row_as_string, 4)].value = head_rebars
+                    sheet[find_required_index(current_row_as_string, 5)].value = result
+                elif cell_number == 2:
+                    result = calculate_AaV(cell.value)
+                    print(f"{result[0]} -> N{result[1]}/{result[2]}")
+                    sheet[find_required_index(current_row_as_string, 4)].value = result[0]
+                    sheet[find_required_index(current_row_as_string, 5)].value = result[1]
+                    sheet[find_required_index(current_row_as_string, 6)].value = '/' + str(result[2])
+                elif cell_number==3:
+                    result = calculate_AaH(cell.value)
+                    print(f"{result[0]} -> N{result[1]}/{result[2]}")
+                    sheet[find_required_index(current_row_as_string, 4)].value = result[0]
+                    sheet[find_required_index(current_row_as_string, 5)].value = result[1]
+                    sheet[find_required_index(current_row_as_string, 6)].value = '/' + str(result[2])
+            cell_number += 1
+    row_index_for_head_size += 12
 
-for level in range (building_levels):
-
-    # find choosen from engineer head size for each level and calculate number of rebars in it
-    head_size = find_head_size(row_index_for_head_size, column_index_for_head_size)
-    head_rebars = calculate_rebars_in_head(head_size[0], head_size[1])
-    print(head_size)
-    print(head_rebars)
-    column_index_for_head_size += 9
-    if level == 0:
-        step = 0
-    else:
-        step = 10
-
-    first_row_index = find_required_index(starting_index_for_Aa1, step)
-    end_row_index = find_required_index(ending_index_for_Aah, step)
-    data_rows = []
-
-    # read excel cell with required reinforcement for each level
-    i=0
-    for row in sheet[first_row_index: end_row_index]:
-        row_as_list=str(row)
-        dot_index=row_as_list.index('.')
-        compare_symbol_index=row_as_list.index('>')
-        row_as_list= row_as_list[dot_index + 1:compare_symbol_index]
-        # data_columns = []
-        for cell in row:
-            # data_columns.append(cell.value)
-        # data_rows.append(data_columns)
-    # df = pd.Series(data_rows)
-    # print(df)
-            if i <= 1:
-                result = calculate_Aa1_Aa2(cell.value, head_rebars)
-                print(f"{head_rebars}N{result}")
-                sheet[find_required_index(row_as_list, 4)].value = head_rebars
-                sheet[find_required_index(row_as_list, 5)].value = result
-            elif i == 2:
-                result = calculate_AaV(cell.value)
-                print(f"{result[0]} -> N{result[1]}/{result[2]}")
-                sheet[find_required_index(row_as_list, 4)].value = result[0]
-                sheet[find_required_index(row_as_list, 5)].value = result[1]
-                sheet[find_required_index(row_as_list, 6)].value = '/' + str(result[2])
-            else:
-                result = calculate_AaH(cell.value)
-                print(f"{result[0]} -> N{result[1]}/{result[2]}")
-                sheet[find_required_index(row_as_list, 4)].value = result[0]
-                sheet[find_required_index(row_as_list, 5)].value = result[1]
-                sheet[find_required_index(row_as_list, 6)].value = '/' + str(result[2])
-            workbook.save('Shear walls_TOWER.xlsx')
-        i+=1
-    # searching for new values of required reinforcement starts from the last found indices
-    starting_index_for_Aa1 = first_row_index
-    ending_index_for_Aah = end_row_index
-
-
+workbook.save('Shear walls_TOWER.xlsx')
