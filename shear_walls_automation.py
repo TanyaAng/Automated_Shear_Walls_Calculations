@@ -246,4 +246,4 @@ def main_function_calculate():
             print(user_input)
             messagebox.showinfo("Info", "Successful")
         except:
-            messagebox.showwarning("Warning", "Empty File")
+            messagebox.showwarning("Warning", "Invalid Input")

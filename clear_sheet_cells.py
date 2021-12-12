@@ -146,4 +146,4 @@ def main_function_clear():
             print (user_input)
             messagebox.showinfo("Info", "Successful")
         except:
-            messagebox.showwarning("Warning", "Empty file")
+            messagebox.showwarning("Warning", "Invalid Input")

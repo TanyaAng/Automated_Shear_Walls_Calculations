@@ -39,6 +39,8 @@ def render_main_view():
            command=main_function_clear).grid(column=0, row=5, padx=5, pady=5)
     Button(tk, text="Calculate Reinforcement", bg='#107C10', fg='white', font=MAIN_FONT,
            command=main_function_calculate).grid(column=0, row=6, padx=5, pady=5)
+    # Button(tk, text='Clear Information', bg='#2878BD', fg='white', font=MAIN_FONT,
+    #        command=lambda: clear_information()).grid(column=0, row=7, padx=5, pady=5)
 
 
 def get_value(file_path, sheet_name, num_shear_walls, levels):
@@ -46,7 +48,7 @@ def get_value(file_path, sheet_name, num_shear_walls, levels):
     # write only the last input from desktop app
     with open('database.txt', 'w') as file:
         json.dump(get_list, file)
-    if get_list == ["", "", "", ""]:
+    if get_list == ["", "", "", ""] or get_list==[]:
         messagebox.showwarning("Warning", "Empty Input")
     else:
         pattern = r'(?<=\\)\w+\s?\w+\.xlsx'
@@ -64,3 +66,5 @@ if __name__ == '__main__':
     tk.configure(bg=MAIN_COLOUR)
     render_main_view()
     tk.mainloop()
+    open("database.txt", 'w').close()
+
