@@ -1,25 +1,12 @@
 import openpyxl
 from math import ceil
 import json
+from tkinter import messagebox
 
-# try:
-#     with open('database.txt', 'r') as file:
-#         user_input = json.load(file)
-# except:
-#     user_input = []
-#
-# file_path = user_input[0] + '.xlsx'
-# sheet_name = user_input[1]
-# number_shear_walls = int(user_input[2])
-# storey_levels = int(user_input[3])
-#
-# workbook = openpyxl.load_workbook(file_path)
-# sheet = workbook[sheet_name]
 
 REBARS_DIAMETER = [8, 10, 12, 14, 16, 18, 20, 22, 25, 28, 32]
 REBARS_CM2 = [0.503, 0.785, 1.131, 1.539, 2.011, 2.545, 3.142, 3.801, 4.909, 6.158, 8.042]
 REBAR_WEIGHT = [0.395, 0.617, 0.888, 1.208, 1.998, 2.466, 2.984, 3.853, 4.834, 6.313, 7.990]
-
 
 def find_head_size(row_indices, column_indices, sheet):
     column_size = []
@@ -31,7 +18,6 @@ def find_head_size(row_indices, column_indices, sheet):
             break
     return column_size
 
-
 def calculate_rebars_in_head(height, width):
     number_rebars = 0
     if height == 10:
@@ -41,7 +27,6 @@ def calculate_rebars_in_head(height, width):
     if width > 25:
         number_rebars += ceil((width - 5) / 15 - 1) * 2
     return number_rebars
-
 
 def calculate_Aa1_Aa2(required_reinforcement, number_of_bars):
     required_diameter = required_reinforcement / number_of_bars
@@ -219,23 +204,26 @@ def calculate_shear_wall(count_shear_walls, levels, file_path, sheet, workbook):
                 compare_symbol_index = current_row_as_string.index('>')
                 current_row_as_string = current_row_as_string[dot_index + 1:compare_symbol_index]
                 for cell in row:
-                    if cell_number == 0 or cell_number == 1:
-                        result = calculate_Aa1_Aa2(cell.value, head_rebars)
-                        print(f"{head_rebars}N{result}")
-                        sheet[find_required_index(current_row_as_string, 4)].value = head_rebars
-                        sheet[find_required_index(current_row_as_string, 5)].value = result
-                    elif cell_number == 2:
-                        result = calculate_AaV(cell.value)
-                        print(f"{result[0]} -> N{result[1]}/{result[2]}")
-                        sheet[find_required_index(current_row_as_string, 4)].value = result[0]
-                        sheet[find_required_index(current_row_as_string, 5)].value = result[1]
-                        sheet[find_required_index(current_row_as_string, 6)].value = '/' + str(result[2])
-                    elif cell_number == 3:
-                        result = calculate_AaH(cell.value)
-                        print(f"{result[0]} -> N{result[1]}/{result[2]}")
-                        sheet[find_required_index(current_row_as_string, 4)].value = result[0]
-                        sheet[find_required_index(current_row_as_string, 5)].value = result[1]
-                        sheet[find_required_index(current_row_as_string, 6)].value = '/' + str(result[2])
+                    if cell.value == None or cell.value==0:
+                        cell.value = 0
+                    else:
+                        if cell_number == 0 or cell_number == 1:
+                            result = calculate_Aa1_Aa2(cell.value, head_rebars)
+                            print(f"{head_rebars}N{result}")
+                            sheet[find_required_index(current_row_as_string, 4)].value = head_rebars
+                            sheet[find_required_index(current_row_as_string, 5)].value = result
+                        elif cell_number == 2:
+                            result = calculate_AaV(cell.value)
+                            print(f"{result[0]} -> N{result[1]}/{result[2]}")
+                            sheet[find_required_index(current_row_as_string, 4)].value = result[0]
+                            sheet[find_required_index(current_row_as_string, 5)].value = result[1]
+                            sheet[find_required_index(current_row_as_string, 6)].value = '/' + str(result[2])
+                        elif cell_number == 3:
+                            result = calculate_AaH(cell.value)
+                            print(f"{result[0]} -> N{result[1]}/{result[2]}")
+                            sheet[find_required_index(current_row_as_string, 4)].value = result[0]
+                            sheet[find_required_index(current_row_as_string, 5)].value = result[1]
+                            sheet[find_required_index(current_row_as_string, 6)].value = '/' + str(result[2])
                 cell_number += 1
         row_index_for_head_size += 12
 
@@ -247,7 +235,7 @@ def main_function_calculate():
     with open('database.txt', 'r') as file:
         try:
             user_input = json.load(file)
-            file_path = user_input[0] + '.xlsx'
+            file_path = user_input[0]
             sheet_name = user_input[1]
             number_shear_walls = int(user_input[2])
             storey_levels = int(user_input[3])
@@ -256,5 +244,6 @@ def main_function_calculate():
             sheet = workbook[sheet_name]
             calculate_shear_wall(number_shear_walls, storey_levels, file_path, sheet, workbook)
             print(user_input)
+            messagebox.showinfo("Info", "Successful")
         except:
-            print("Empty file")
+            messagebox.showwarning("Warning", "Empty File")

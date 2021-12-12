@@ -1,6 +1,7 @@
 import openpyxl
 from math import ceil
 import json
+from tkinter import messagebox
 
 
 
@@ -135,7 +136,7 @@ def main_function_clear():
     with open('database.txt', 'r') as file:
         try:
             user_input = json.load(file)
-            file_path = user_input[0] + '.xlsx'
+            file_path = user_input[0]
             sheet_name = user_input[1]
             number_shear_walls = int(user_input[2])
             storey_levels = int(user_input[3])
@@ -143,5 +144,6 @@ def main_function_clear():
             sheet = workbook[sheet_name]
             clear_cell(number_shear_walls, storey_levels, file_path, sheet, workbook)
             print (user_input)
+            messagebox.showinfo("Info", "Successful")
         except:
-            print ("Empty file")
+            messagebox.showwarning("Warning", "Empty file")
