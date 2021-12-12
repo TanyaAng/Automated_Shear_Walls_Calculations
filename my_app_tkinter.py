@@ -39,8 +39,6 @@ def render_main_view():
            command=main_function_clear).grid(column=0, row=5, padx=5, pady=5)
     Button(tk, text="Calculate Reinforcement", bg='#107C10', fg='white', font=MAIN_FONT,
            command=main_function_calculate).grid(column=0, row=6, padx=5, pady=5)
-    # Button(tk, text='Clear Information', bg='#2878BD', fg='white', font=MAIN_FONT,
-    #        command=lambda: clear_information()).grid(column=0, row=7, padx=5, pady=5)
 
 
 def get_value(file_path, sheet_name, num_shear_walls, levels):
