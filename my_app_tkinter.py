@@ -40,12 +40,13 @@ def render_main_view():
     Button(tk, text='Get Information', bg='#2878BD', fg='white', font=MAIN_FONT,
            command=lambda: get_value(txt_path,file_path_entry, sheet_name_entry, num_shear_walls_entry, levels_entry)).grid(
         column=0, row=5, padx=5, pady=5)
-    Button(tk, text="Clear Cells in Sheet", bg='#107C10', fg='white', font=MAIN_FONT,
-           command=main_function_clear).grid(column=0, row=6, padx=5, pady=5)
-    Button(tk, text="Calculate Reinforcement", bg='#107C10', fg='white', font=MAIN_FONT,
+    Button(tk, text="Clear Cells in Sheet", bg='#A80000', fg='white', font=MAIN_FONT,
+           command=main_function_clear).grid(column=1, row=5, padx=5, pady=5)
+    Button(tk, text="Get Tower Results", bg='#107C10', fg='white', font=MAIN_FONT,
+           command=main_function_get_results).grid(column=0, row=6, padx=5, pady=5)
+    Button(tk, text="Calculate Reinf.", bg='#107C10', fg='white', font=MAIN_FONT,
            command=main_function_calculate).grid(column=0, row=7, padx=5, pady=5)
-    Button(tk, text="Get Tower Results from TXT", bg='#107C10', fg='white', font=MAIN_FONT,
-           command=main_function_get_results).grid(column=0, row=8, padx=5, pady=5)
+
 
 
 
