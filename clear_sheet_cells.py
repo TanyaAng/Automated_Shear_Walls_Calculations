@@ -116,13 +116,16 @@ def clear_cell(count_shear_walls, levels, file_path, sheet, workbook):
                 current_row_as_string = current_row_as_string[dot_index + 1:compare_symbol_index]
                 for cell in row:
                     if cell_number == 0 or cell_number == 1:
+                        sheet[current_row_as_string].value = None
                         sheet[find_required_index(current_row_as_string, 4)].value = None
                         sheet[find_required_index(current_row_as_string, 5)].value = None
                     elif cell_number == 2:
+                        sheet[current_row_as_string].value = None
                         sheet[find_required_index(current_row_as_string, 4)].value = None
                         sheet[find_required_index(current_row_as_string, 5)].value = None
                         sheet[find_required_index(current_row_as_string, 6)].value = None
                     elif cell_number == 3:
+                        sheet[current_row_as_string].value = None
                         sheet[find_required_index(current_row_as_string, 4)].value = None
                         sheet[find_required_index(current_row_as_string, 5)].value = None
                         sheet[find_required_index(current_row_as_string, 6)].value = None
@@ -136,10 +139,11 @@ def main_function_clear():
     with open('database.txt', 'r') as file:
         try:
             user_input = json.load(file)
-            file_path = user_input[0]
-            sheet_name = user_input[1]
-            number_shear_walls = int(user_input[2])
-            storey_levels = int(user_input[3])
+            txt_path=user_input[0]
+            file_path = user_input[1]
+            sheet_name = user_input[2]
+            number_shear_walls = int(user_input[3])
+            storey_levels = int(user_input[4])
             workbook = openpyxl.load_workbook(file_path)
             sheet = workbook[sheet_name]
             clear_cell(number_shear_walls, storey_levels, file_path, sheet, workbook)

@@ -3,10 +3,10 @@ from math import ceil
 import json
 from tkinter import messagebox
 
-
 REBARS_DIAMETER = [8, 10, 12, 14, 16, 18, 20, 22, 25, 28, 32]
 REBARS_CM2 = [0.503, 0.785, 1.131, 1.539, 2.011, 2.545, 3.142, 3.801, 4.909, 6.158, 8.042]
 REBAR_WEIGHT = [0.395, 0.617, 0.888, 1.208, 1.998, 2.466, 2.984, 3.853, 4.834, 6.313, 7.990]
+
 
 def find_head_size(row_indices, column_indices, sheet):
     column_size = []
@@ -18,6 +18,7 @@ def find_head_size(row_indices, column_indices, sheet):
             break
     return column_size
 
+
 def calculate_rebars_in_head(height, width):
     number_rebars = 0
     if height == 10:
@@ -27,6 +28,7 @@ def calculate_rebars_in_head(height, width):
     if width > 25:
         number_rebars += ceil((width - 5) / 15 - 1) * 2
     return number_rebars
+
 
 def calculate_Aa1_Aa2(required_reinforcement, number_of_bars):
     required_diameter = required_reinforcement / number_of_bars
@@ -204,7 +206,7 @@ def calculate_shear_wall(count_shear_walls, levels, file_path, sheet, workbook):
                 compare_symbol_index = current_row_as_string.index('>')
                 current_row_as_string = current_row_as_string[dot_index + 1:compare_symbol_index]
                 for cell in row:
-                    if cell.value == None or cell.value==0:
+                    if cell.value == None or cell.value == 0:
                         cell.value = 0
                     else:
                         if cell_number == 0 or cell_number == 1:
@@ -235,10 +237,11 @@ def main_function_calculate():
     with open('database.txt', 'r') as file:
         try:
             user_input = json.load(file)
-            file_path = user_input[0]
-            sheet_name = user_input[1]
-            number_shear_walls = int(user_input[2])
-            storey_levels = int(user_input[3])
+            txt_path = user_input[0]
+            file_path = user_input[1]
+            sheet_name = user_input[2]
+            number_shear_walls = int(user_input[3])
+            storey_levels = int(user_input[4])
 
             workbook = openpyxl.load_workbook(file_path)
             sheet = workbook[sheet_name]
