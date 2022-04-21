@@ -70,7 +70,7 @@ def get_Tower_results_from_txt(data):
         if len(value) < max_lenght:
             count_to_fill = max_lenght - len(value)
             for i in range(count_to_fill):
-                value.append(0)
+                value.append(None)
     print (f"Result dict: {result_dict}")
     result_list = []
     for key, value in result_dict.items():

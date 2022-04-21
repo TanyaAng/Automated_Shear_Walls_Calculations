@@ -26,7 +26,14 @@ def calculate_rebars_in_head(height, width):
     elif height > 10:
         number_rebars += ceil((height - 5) / 15 + 1) * 2
     if width > 25:
-        number_rebars += ceil((width - 5) / 15 - 1) * 2
+        if width in [30, 35, 40, 45] and height == 10:
+            number_rebars += 1
+        elif width in [50, 60] and height == 10:
+            number_rebars += 2
+        elif width in [30, 35, 40, 45] and height > 10:
+            number_rebars += 2
+        else:
+            number_rebars += ceil((width - 5) / 15 - 1) * 2
     return number_rebars
 
 
@@ -66,7 +73,10 @@ def calculate_AaH(required_reinforcement):
     return rebars_per_meter[index_of_min_step], REBARS_DIAMETER[index_of_min_rebar], steps[index_of_min_step]
 
 
-def calculate_AaV(required_reinforcement):
+def calculate_AaV(required_reinforcement, head_width):
+    wall_width = head_width
+    min_percent_vertical_reinfocement = 0.002
+    min_reinforcement = min_percent_vertical_reinfocement * 100 * wall_width / 2
     steps = [20, 15]
     rebars_per_meter = [round(100 / x, 2) for x in steps]
     min_weight = 10000000
@@ -81,7 +91,7 @@ def calculate_AaV(required_reinforcement):
                 continue
             else:
                 weight_of_current_mesh = rebars_per_meter[i] * current_rebar_weight
-            if 0 < weight_of_current_mesh <= min_weight:
+            if 0 < weight_of_current_mesh <= min_weight and rebar * rebars_per_meter[i] > min_reinforcement:
                 min_weight = weight_of_current_mesh
                 index_of_min_rebar = index
                 index_of_min_step = i
@@ -185,9 +195,9 @@ def calculate_shear_wall(count_shear_walls, levels, file_path, sheet, workbook):
         for level in range(building_levels):
             print(f'Level:{level + 1}')
             # find choosen from engineer head size for each level and calculate number of rebars in it
-            head_size = find_head_size(row_index_for_head_size, column_index_for_head_size, sheet)
-            head_rebars = calculate_rebars_in_head(head_size[0], head_size[1])
-            print(f"{head_rebars} number of rebars in head {head_size}")
+            head_height, head_width = find_head_size(row_index_for_head_size, column_index_for_head_size, sheet)
+            head_rebars = calculate_rebars_in_head(head_height, head_width)
+            print(f"{head_rebars} number of rebars in head {head_height}, {head_width}")
             column_index_for_head_size += 10
             if level == 0:
                 step = 0
@@ -206,16 +216,16 @@ def calculate_shear_wall(count_shear_walls, levels, file_path, sheet, workbook):
                 compare_symbol_index = current_row_as_string.index('>')
                 current_row_as_string = current_row_as_string[dot_index + 1:compare_symbol_index]
                 for cell in row:
-                    if cell.value == None or cell.value == 0:
-                        cell.value = 0
-                    else:
+                    # if cell.value == None:
+                    #     cell.value = 0
+                    if cell.value != None:
                         if cell_number == 0 or cell_number == 1:
                             result = calculate_Aa1_Aa2(cell.value, head_rebars)
                             print(f"{head_rebars}N{result}")
                             sheet[find_required_index(current_row_as_string, 4)].value = head_rebars
                             sheet[find_required_index(current_row_as_string, 5)].value = result
                         elif cell_number == 2:
-                            result = calculate_AaV(cell.value)
+                            result = calculate_AaV(cell.value, head_width)
                             print(f"{result[0]} -> N{result[1]}/{result[2]}")
                             sheet[find_required_index(current_row_as_string, 4)].value = result[0]
                             sheet[find_required_index(current_row_as_string, 5)].value = result[1]
