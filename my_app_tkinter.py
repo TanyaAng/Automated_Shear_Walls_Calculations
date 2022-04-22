@@ -99,9 +99,9 @@ if __name__ == '__main__':
     file_path_entry.place(x=358.0, y=112, width=180.0, height=28)
 
     entry2_img = PhotoImage(file=f"img_textBox2.png")
-    entry2_bg = canvas.create_image(449.0, 194.0, image=entry2_img)
+    entry2_bg = canvas.create_image(448.0, 194.0, image=entry2_img)
     sheet_name_entry = Entry(bd=0, bg="#ffffff", highlightthickness=0)
-    sheet_name_entry.place(x=359.0, y=179, width=180.0, height=28)
+    sheet_name_entry.place(x=358.0, y=179, width=180.0, height=28)
 
     entry3_img = PhotoImage(file=f"img_textBox3.png")
     entry3_bg = canvas.create_image(448.0, 261.0, image=entry3_img)
