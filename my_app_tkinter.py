@@ -18,60 +18,6 @@ def clear_view():
 
 def render_main_view():
     clear_view()
-    canvas = Canvas(tk, bg="#c8c8c8", height=600, width=600, bd=0, highlightthickness=0, relief="ridge")
-    canvas.place(x=0, y=0)
-
-    entry0_img = PhotoImage(file=f"img_textBox0.png")
-    entry0_bg = canvas.create_image(448.0, 60.0, image=entry0_img)
-    txt_path = Entry(bd=0, bg="#ffffff", highlightthickness=0)
-    txt_path.place(x=358.0, y=45, width=180.0, height=28)
-
-    entry1_img = PhotoImage(file=f"img_textBox1.png")
-    entry1_bg = canvas.create_image(448.0, 127.0, image=entry1_img)
-    file_path_entry = Entry(bd=0, bg="#ffffff", highlightthickness=0)
-    file_path_entry.place(x=358.0, y=112, width=180.0, height=28)
-
-    entry2_img = PhotoImage(file=f"img_textBox2.png")
-    entry2_bg = canvas.create_image(449.0, 194.0, image=entry2_img)
-    sheet_name_entry = Entry(bd=0, bg="#ffffff", highlightthickness=0)
-    sheet_name_entry.place(x=359.0, y=179, width=180.0, height=28)
-
-    entry3_img = PhotoImage(file=f"img_textBox3.png")
-    entry3_bg = canvas.create_image(448.0, 261.0, image=entry3_img)
-    num_shear_walls_entry = Entry(bd=0, bg="#ffffff", highlightthickness=0)
-    num_shear_walls_entry.place(x=358.0, y=246, width=180.0, height=28)
-
-    entry4_img = PhotoImage(file=f"img_textBox4.png")
-    entry4_bg = canvas.create_image(448.0, 328.0, image=entry4_img)
-    levels_entry = Entry(bd=0, bg="#ffffff", highlightthickness=0)
-    levels_entry.place(x=358.0, y=313, width=180.0, height=28)
-
-
-    img0 = PhotoImage(file=f"img0.png")
-    b0 = Button(image=img0, borderwidth=0, highlightthickness=0,
-                command=lambda: get_value(txt_path, file_path_entry, sheet_name_entry, num_shear_walls_entry,
-                                          levels_entry), relief="flat",
-                background="#C8C8C8", activebackground="#C8C8C8")
-    b0.place(x=350, y=366, width=200, height=40)
-
-    img1 = PhotoImage(file=f"img1.png")
-    b1 = Button(image=img1, borderwidth=0, highlightthickness=0, command=main_function_get_results, relief="flat",
-                background="#C8C8C8", activebackground="#C8C8C8")
-    b1.place(x=350, y=424, width=200, height=40)
-
-    img2 = PhotoImage(file=f"img2.png")
-    b2 = Button(image=img2, borderwidth=0, highlightthickness=0, command=main_function_calculate, relief="flat",
-                background="#C8C8C8", activebackground="#C8C8C8")
-    b2.place(x=350, y=482, width=200, height=40)
-
-    img3 = PhotoImage(file=f"img3.png")
-    b3 = Button(image=img3, borderwidth=0, highlightthickness=0, command=main_function_clear, relief="flat",
-                background="#C8C8C8", activebackground="#C8C8C8")
-    b3.place(x=350, y=540, width=200, height=40)
-
-    background_img = PhotoImage(file=f"background.png")
-    background = canvas.create_image(260.5, 299.0, image=background_img)
-
     # Label(tk, text="TXT file", bg=MAIN_COLOUR, font=MAIN_FONT).grid(column=0, row=0, padx=5, pady=5)
     # txt_path = Entry(tk)
     # txt_path.grid(column=1, row=0, padx=5, pady=5)
@@ -118,19 +64,20 @@ def get_value(txt_path, file_path, sheet_name, num_shear_walls, levels):
     # write only the last input from desktop app
     with open('database.txt', 'w') as file:
         json.dump(get_list, file)
-    # it is not nessecary
-    if get_list == ["", "", "", "", ""] or get_list == []:
-        messagebox.showwarning("Warning", "Empty Input")
+    if get_list==['','','','','']:
+        messagebox.showwarning("Warning", "Invalid Input")
     else:
-        pattern_txt = r'(?<=\\)\w+\s?\w+\.txt'
-        txt_data = ''.join(re.findall(pattern_txt, get_list[0]))
-        pattern_xlsx = r'(?<=\\)\w+\s?\w+\.xlsx'
-        file_data = ''.join(re.findall(pattern_xlsx, get_list[1]))
-        get_list_to_print = get_list[2:5]
-        get_list_to_print.insert(0, txt_data)
-        get_list_to_print.insert(1, file_data)
-        text_to_print = f'txt file: {txt_data}\nFile name: {file_data} \nSheet Name: {get_list_to_print[2]} \nShear Walls: {get_list_to_print[3]} \nLevels: {get_list_to_print[4]}'
-        messagebox.showinfo("Info", text_to_print)
+        messagebox.showinfo('Info', 'Valid Input')
+
+        # pattern_txt = r'(?<=\\)\w+\s?\w+\.txt'
+        # txt_data = ''.join(re.findall(pattern_txt, get_list[0]))
+        # pattern_xlsx = r'(?<=\\)\w+\s?\w+\.xlsx'
+        # file_data = ''.join(re.findall(pattern_xlsx, get_list[1]))
+        # get_list_to_print = get_list[2:5]
+        # get_list_to_print.insert(0, txt_data)
+        # get_list_to_print.insert(1, file_data)
+        # text_to_print = f'TXT file: {txt_data}\nXLS file: {file_data} \nSheet Name: {get_list_to_print[2]} \nShear Walls: {get_list_to_print[3]} \nLevels: {get_list_to_print[4]}'
+        # messagebox.showinfo("Info", text_to_print)
 
 
 if __name__ == '__main__':
