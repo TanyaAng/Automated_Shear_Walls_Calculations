@@ -1,9 +1,10 @@
-##### SHEAR WALLS AUTOMATION APP
+###### SHEAR WALLS AUTOMATION APP
 
 
 
 ![Capture](https://user-images.githubusercontent.com/18015470/174805811-5eb5a033-0e9d-4da7-9ad0-f2c18620f20d.PNG)
 
+### ABOUT THE PROJECT
 The application has a supporing role for calculations of shear walls in seismic regions and easy providement the required information from structural engineer to technical drafter, whose task is to prepare drawings according to engineer's calculation. 
 There are many softwares that provide the complicated calculations of shear walls, but theirs results are readable only for structural engineer, whose task is to derive the results and make additional calculations to find the best way to construct the wall in more economic way, 
 observing all code and national legislation rules. 
