@@ -1,5 +1,6 @@
-def max_rebars_in_meter ():
+def max_rebars_in_meter():
     return max(REBAR_STEPS_MAPPER.values())
+
 
 def calculate_rebars_per_meter(rebars_per_meter):
     for step, count in REBAR_STEPS_MAPPER.items():
@@ -24,4 +25,3 @@ REBAR_STEPS_MAPPER = {20: 5,
                       15: 6.666666666666667,
                       12.5: 8,
                       10: 10}
-

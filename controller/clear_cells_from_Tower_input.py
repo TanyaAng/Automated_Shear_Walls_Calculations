@@ -1,5 +1,5 @@
-from helpers.find_current_shear_wall_index import find_current_shear_wall_index
-from helpers.find_required_index import find_required_index
+from helpers.xls_helpers.find_current_shear_wall_index import find_current_shear_wall_index
+from helpers.xls_helpers.find_required_index import find_required_index
 
 
 def clear_cell(count_shear_walls, levels, sheet):
