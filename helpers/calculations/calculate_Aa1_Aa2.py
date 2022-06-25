@@ -1,4 +1,4 @@
-from db.rebas_db import REBARS_CM2, REBARS_DIAMETER
+from helpers.rebars_db import REBARS_CM2, REBARS_DIAMETER
 
 
 def calculate_Aa1_Aa2(required_reinforcement, number_of_bars):

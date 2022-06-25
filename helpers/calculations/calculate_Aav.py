@@ -1,4 +1,4 @@
-from db.rebas_db import REBARS_CM2, REBAR_WEIGHT, REBARS_DIAMETER
+from helpers.rebars_db import REBARS_CM2, REBAR_WEIGHT, REBARS_DIAMETER
 
 
 def calculate_AaV(required_reinforcement, head_width):
