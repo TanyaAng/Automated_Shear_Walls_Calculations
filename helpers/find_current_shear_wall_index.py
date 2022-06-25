@@ -28,3 +28,5 @@ def find_current_shear_wall_index(number_of_shear_wall):
         next_ending_column = string_of_alpha + next_ending_column
 
     return next_starting_column, next_ending_column
+
+a=5

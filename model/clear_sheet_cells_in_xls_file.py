@@ -21,3 +21,5 @@ def clear_cells():
             messagebox.showinfo("Info", "Successful")
         except:
             messagebox.showwarning("Warning", "Invalid Input")
+
+a=5

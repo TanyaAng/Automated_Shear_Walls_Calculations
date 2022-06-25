@@ -1,3 +1,6 @@
+from db.rebas_db import REBARS_CM2, REBAR_WEIGHT, REBARS_DIAMETER
+
+
 def calculate_AaH(required_reinforcement):
     steps = [20, 15, 12.5, 10]
     rebars_per_meter = [round(100 / x, 2) for x in steps]

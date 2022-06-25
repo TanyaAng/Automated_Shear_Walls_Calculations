@@ -1,3 +1,6 @@
+from db.rebas_db import REBARS_CM2, REBARS_DIAMETER
+
+
 def calculate_Aa1_Aa2(required_reinforcement, number_of_bars):
     required_diameter = required_reinforcement / number_of_bars
     provided_diameter=0

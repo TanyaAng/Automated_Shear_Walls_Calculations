@@ -1,3 +1,5 @@
+from math import ceil
+
 def calculate_rebars_in_head(height, width):
     number_rebars = 0
     if height == 10:

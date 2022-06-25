@@ -24,3 +24,5 @@ def get_results_from_txt():
             messagebox.showinfo("Info", "Successful")
         except:
             messagebox.showwarning("Warning", "Invalid input")
+
+a=5

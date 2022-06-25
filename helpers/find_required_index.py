@@ -48,3 +48,5 @@ def find_required_index(starting_row, step):
                 next_row_alpha.append(chr(ord(row_alpha[index]) + step))
                 is_appended_next_symbol = True
     return ''.join(list(reversed(next_row_alpha)) + row_digit)
+
+a=5
