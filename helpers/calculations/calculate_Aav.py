@@ -31,3 +31,5 @@ def calculate_AaV(reinforcement, wall_width):
                 min_rebar_per_meter = current_count
                 min_step = current_step
     return min_rebar_per_meter, min_diameter, min_step
+
+

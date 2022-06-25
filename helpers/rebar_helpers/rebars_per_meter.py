@@ -21,7 +21,9 @@ def calculate_rebars_per_meter_and_min_reinforcement(rebar_area, rebars_per_mete
     return None, None
 
 
-REBAR_STEPS_MAPPER = {20: 5,
+REBAR_STEPS_MAPPER = {
+                      20: 5,
                       15: 6.666666666666667,
                       12.5: 8,
-                      10: 10}
+                      10: 10
+                      }
