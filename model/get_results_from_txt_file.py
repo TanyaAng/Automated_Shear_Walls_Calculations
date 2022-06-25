@@ -14,14 +14,14 @@ def get_results_from_txt():
             sheet_name = user_input[2]
             number_shear_walls = int(user_input[3])
             storey_levels = int(user_input[4])
-            # print(user_input)
+            print(user_input)
             data = open(txt_path, encoding='utf-8', mode='r')
             workbook = openpyxl.load_workbook(file_path)
             sheet = workbook[sheet_name]
-            # print(sheet)
+            print(sheet)
             paste_Tower_results_in_xls(number_shear_walls, storey_levels, sheet, data)
             workbook.save(file_path)
-            # print(user_input)
+            print(user_input)
             messagebox.showinfo("Info", "Successful")
         except:
             messagebox.showwarning("Warning", "Invalid input")

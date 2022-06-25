@@ -1,4 +1,5 @@
 '''This function works only for row index with two leters (example:HJ...)'''
+
 def find_required_index(starting_row, step):
     row_alpha = []
     row_digit = []
@@ -47,5 +48,6 @@ def find_required_index(starting_row, step):
             else:
                 next_row_alpha.append(chr(ord(row_alpha[index]) + step))
                 is_appended_next_symbol = True
+
     return ''.join(list(reversed(next_row_alpha)) + row_digit)
 
