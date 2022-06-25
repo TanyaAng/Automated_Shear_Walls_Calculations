@@ -1,6 +1,6 @@
-from helpers.xls_helpers.find_current_shear_wall_index import find_current_shear_wall_index
-from helpers.xls_helpers.find_required_index import find_required_index
-from helpers.tower_helpers.get_Tower_results_from_txt_file import get_Tower_results_from_txt
+from helpers.xls.find_current_shear_wall_index import find_current_shear_wall_index
+from helpers.xls.find_required_index import find_required_index
+from helpers.tower.get_Tower_results_from_txt_file import get_Tower_results_from_txt
 
 
 

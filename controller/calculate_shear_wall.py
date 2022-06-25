@@ -2,9 +2,9 @@ from helpers.calculations.calculate_Aa1_Aa2 import calculate_Aa1_Aa2
 from helpers.calculations.calculate_Aah import calculate_AaH
 from helpers.calculations.calculate_Aav import calculate_AaV
 from helpers.calculations.calculate_rebars_in_head import calculate_rebars_in_head
-from helpers.xls_helpers.find_current_shear_wall_index import find_current_shear_wall_index
-from helpers.xls_helpers.find_hear_size import find_head_size
-from helpers.xls_helpers.find_required_index import find_required_index
+from helpers.xls.find_current_shear_wall_index import find_current_shear_wall_index
+from helpers.xls.find_hear_size import find_head_size
+from helpers.xls.find_required_index import find_required_index
 
 
 def calculate_shear_walls(count_shear_walls, levels, sheet):

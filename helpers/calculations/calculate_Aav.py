@@ -1,6 +1,6 @@
-from helpers.rebar_helpers.rebars_per_meter import calculate_rebars_per_meter_and_min_reinforcement, \
+from helpers.rebars.rebars_per_meter import calculate_rebars_per_meter_and_min_reinforcement, \
     max_rebars_in_meter
-from helpers.rebar_helpers.rebars_db import rebar_area_cm2, rebar_weight_kg, rebars
+from helpers.rebars.rebars_db import rebar_area_cm2, rebar_weight_kg, rebars
 
 from sys import maxsize
 
