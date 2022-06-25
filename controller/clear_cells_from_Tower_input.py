@@ -2,7 +2,7 @@ from helpers.find_current_shear_wall_index import find_current_shear_wall_index
 from helpers.find_required_index import find_required_index
 
 
-def clear_cell(count_shear_walls, levels, file_path, sheet, workbook):
+def clear_cell(count_shear_walls, levels, sheet):
     number_of_shear_walls = count_shear_walls
     building_levels = levels
     row_index_for_head_size = 7
@@ -27,7 +27,7 @@ def clear_cell(count_shear_walls, levels, file_path, sheet, workbook):
                 dot_index = current_row_as_string.index('.')
                 compare_symbol_index = current_row_as_string.index('>')
                 current_row_as_string = current_row_as_string[dot_index + 1:compare_symbol_index]
-                for cell in row:
+                for _ in row:
                     if cell_number == 0 or cell_number == 1:
                         sheet[current_row_as_string].value = None
                         sheet[find_required_index(current_row_as_string, 4)].value = None
@@ -44,6 +44,3 @@ def clear_cell(count_shear_walls, levels, file_path, sheet, workbook):
                         sheet[find_required_index(current_row_as_string, 6)].value = None
                 cell_number += 1
         row_index_for_head_size += 12
-
-    workbook.save(file_path)
-

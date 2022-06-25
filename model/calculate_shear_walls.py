@@ -17,8 +17,9 @@ def calculate():
 
             workbook = openpyxl.load_workbook(file_path)
             sheet = workbook[sheet_name]
-            calculate_shear_walls(number_shear_walls, storey_levels, file_path, sheet, workbook)
-            print(user_input)
+            calculate_shear_walls(number_shear_walls, storey_levels, sheet)
+            workbook.save(file_path)
+            # print(user_input)
             messagebox.showinfo("Info", "Successful")
         except:
             messagebox.showwarning("Warning", "Invalid Input")

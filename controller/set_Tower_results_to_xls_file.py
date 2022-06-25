@@ -2,7 +2,7 @@ from helpers.tower_helpers.get_Tower_results_from_txt_file import get_Tower_resu
 from helpers import find_current_shear_wall_index, find_required_index
 
 
-def paste_Tower_results_in_xls(count_shear_walls, levels, file_path, sheet, workbook, data):
+def paste_Tower_results_in_xls(count_shear_walls, levels, sheet, data):
     number_of_shear_walls = count_shear_walls
     building_levels = levels
     row_index_for_head_size = 7
@@ -33,7 +33,7 @@ def paste_Tower_results_in_xls(count_shear_walls, levels, file_path, sheet, work
                 dot_index = current_row_as_string.index('.')
                 compare_symbol_index = current_row_as_string.index('>')
                 current_row_as_string = current_row_as_string[dot_index + 1:compare_symbol_index]
-                for cell in row:
+                for _ in row:
                     if cell_number == 0:
                         sheet[current_row_as_string].value = result_Tower[current_index_of_result_list]
                     elif cell_number == 1:
@@ -47,6 +47,6 @@ def paste_Tower_results_in_xls(count_shear_walls, levels, file_path, sheet, work
                 current_index_of_result_list += 4
                 print(current_index_of_result_list)
         row_index_for_head_size += 12
-    workbook.save(file_path)
+    # workbook.save(file_path)
 
 

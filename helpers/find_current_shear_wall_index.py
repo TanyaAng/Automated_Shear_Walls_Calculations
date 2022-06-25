@@ -1,4 +1,5 @@
 def find_current_shear_wall_index(number_of_shear_wall):
+    '''IMPORTANT: Starting rows must be H8, H9, H10, H11'''
     next_starting_column = 'H8'
     next_ending_column = 'H11'
     if number_of_shear_wall >= 1:

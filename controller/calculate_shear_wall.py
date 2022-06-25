@@ -7,7 +7,7 @@ from helpers.find_hear_size import find_head_size
 from helpers.find_required_index import find_required_index
 
 
-def calculate_shear_walls(count_shear_walls, levels, file_path, sheet, workbook):
+def calculate_shear_walls(count_shear_walls, levels, sheet):
     number_of_shear_walls = count_shear_walls
     building_levels = levels
     row_index_for_head_size = 7
@@ -64,5 +64,5 @@ def calculate_shear_walls(count_shear_walls, levels, file_path, sheet, workbook)
                 cell_number += 1
         row_index_for_head_size += 12
 
-    workbook.save(file_path)
+
 

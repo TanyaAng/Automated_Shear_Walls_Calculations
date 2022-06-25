@@ -1,4 +1,4 @@
-# This function works only for row index with two leters (example:HJ...)
+'''This function works only for row index with two leters (example:HJ...)'''
 def find_required_index(starting_row, step):
     row_alpha = []
     row_digit = []

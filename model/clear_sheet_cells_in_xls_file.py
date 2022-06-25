@@ -2,7 +2,7 @@ import openpyxl
 import json
 from tkinter import messagebox
 
-from helpers.clear_cells import clear_cell
+from controller.clear_cells_from_Tower_input import clear_cell
 
 
 def clear_cells():
@@ -16,8 +16,9 @@ def clear_cells():
             storey_levels = int(user_input[4])
             workbook = openpyxl.load_workbook(file_path)
             sheet = workbook[sheet_name]
-            clear_cell(number_shear_walls, storey_levels, file_path, sheet, workbook)
-            print (user_input)
+            clear_cell(number_shear_walls, storey_levels, sheet)
+            workbook.save(file_path)
+            # print (user_input)
             messagebox.showinfo("Info", "Successful")
         except:
             messagebox.showwarning("Warning", "Invalid Input")

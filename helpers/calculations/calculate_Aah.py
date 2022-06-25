@@ -21,5 +21,3 @@ def calculate_AaH(required_reinforcement):
                 index_of_min_rebar = index
                 index_of_min_step = i
     return rebars_per_meter[index_of_min_step], REBARS_DIAMETER[index_of_min_rebar], steps[index_of_min_step]
-
-a=5
