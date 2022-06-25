@@ -25,4 +25,3 @@ def get_results_from_txt():
         except:
             messagebox.showwarning("Warning", "Invalid input")
 
-a=5

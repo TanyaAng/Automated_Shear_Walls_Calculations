@@ -49,4 +49,3 @@ def find_required_index(starting_row, step):
                 is_appended_next_symbol = True
     return ''.join(list(reversed(next_row_alpha)) + row_digit)
 
-a=5

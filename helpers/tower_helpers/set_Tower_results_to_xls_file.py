@@ -50,4 +50,3 @@ def paste_Tower_results_in_xls(count_shear_walls, levels, file_path, sheet, work
     workbook.save(file_path)
 
 
-a=5

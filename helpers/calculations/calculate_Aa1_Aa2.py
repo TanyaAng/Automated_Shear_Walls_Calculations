@@ -14,3 +14,5 @@ def calculate_Aa1_Aa2(required_reinforcement, number_of_bars):
             else:
                 provided_diameter = 'Change column size!!!'
     return provided_diameter
+
+a=5

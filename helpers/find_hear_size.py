@@ -8,4 +8,3 @@ def find_head_size(row_indices, column_indices, sheet):
             break
     return column_size
 
-a=5

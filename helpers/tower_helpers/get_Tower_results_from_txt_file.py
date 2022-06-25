@@ -71,4 +71,3 @@ def get_Tower_results_from_txt(data):
 
     return result_list
 
-a=5

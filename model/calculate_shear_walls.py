@@ -23,4 +23,3 @@ def calculate():
         except:
             messagebox.showwarning("Warning", "Invalid Input")
 
-a=5

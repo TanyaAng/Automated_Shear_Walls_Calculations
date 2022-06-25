@@ -16,3 +16,5 @@ def calculate_rebars_in_head(height, width):
         else:
             number_rebars += ceil((width - 5) / 15 - 1) * 2
     return number_rebars
+
+a=5

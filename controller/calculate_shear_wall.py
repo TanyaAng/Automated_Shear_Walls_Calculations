@@ -66,4 +66,3 @@ def calculate_shear_walls(count_shear_walls, levels, file_path, sheet, workbook)
 
     workbook.save(file_path)
 
-a=5
