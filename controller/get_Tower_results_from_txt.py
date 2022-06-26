@@ -13,4 +13,3 @@ def get_Tower_results_from_txt(data):
     result_list = result_list_of_flattened_dict(flattened_dict)
     return result_list
 
-a=5

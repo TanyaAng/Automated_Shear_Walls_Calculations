@@ -33,7 +33,7 @@ def create_PDF(dictionary):
     pdf.output("result.pdf")
     os.startfile("result.pdf")
 
-a=5
+
 
 # dictionary = {'Ш1-3': {'Aa1': 36.93, 'Aa2': 36.93, 'Aav': 6.01, 'Aah': 9.03},
 #               'Ш1-2': {'Aa1': 29.1, 'Aa2': 29.1, 'Aav': 4.74, 'Aah': 6.39},
