@@ -1,3 +1,4 @@
+from helpers.xls.find_current_row_name import current_row_name
 from helpers.xls.find_current_shear_wall_index import find_current_shear_wall_index
 from helpers.xls.find_required_index import find_required_index
 
@@ -6,9 +7,7 @@ def clear_cell(count_shear_walls, levels, sheet):
     row_index_for_head_size = 7
     for current_shear_wall in range(count_shear_walls):
         column_index_for_head_size = 6
-        starting_index_for_current_wall = find_current_shear_wall_index(current_shear_wall)
-        index_for_Aa1 = starting_index_for_current_wall[0]
-        index_for_Aah = starting_index_for_current_wall[1]
+        index_for_Aa1, index_for_Aah = find_current_shear_wall_index(current_shear_wall)
         for level in range(levels):
             column_index_for_head_size += 10
             if level == 0:
@@ -21,10 +20,7 @@ def clear_cell(count_shear_walls, levels, sheet):
             index_for_Aah = end_row_index
             cell_number = 0
             for row in sheet[start_row_index: end_row_index]:
-                current_row_as_string = str(row)
-                dot_index = current_row_as_string.index('.')
-                compare_symbol_index = current_row_as_string.index('>')
-                current_row_as_string = current_row_as_string[dot_index + 1:compare_symbol_index]
+                current_row_as_string = current_row_name(row)
                 for _ in row:
                     if cell_number == 0 or cell_number == 1:
                         sheet[current_row_as_string].value = None
@@ -42,5 +38,3 @@ def clear_cell(count_shear_walls, levels, sheet):
                         sheet[find_required_index(current_row_as_string, 6)].value = None
                 cell_number += 1
         row_index_for_head_size += 12
-
-a=5

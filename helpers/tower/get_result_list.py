@@ -5,4 +5,3 @@ def result_list_of_flattened_dict(flattened_dict):
             result.append(num)
     return result
 
-a=5

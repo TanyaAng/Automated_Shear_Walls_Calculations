@@ -25,4 +25,3 @@ def flatten_values_and_reverse_levels_per_wall(dictionary_result):
 
     return flatten_dict
 
-a=5

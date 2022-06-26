@@ -2,6 +2,7 @@ from helpers.calculations.calculate_Aa1_Aa2 import calculate_Aa1_Aa2
 from helpers.calculations.calculate_Aah import calculate_AaH
 from helpers.calculations.calculate_Aav import calculate_AaV
 from helpers.calculations.calculate_rebars_in_head import calculate_rebars_in_head
+from helpers.xls.find_current_row_name import current_row_name
 from helpers.xls.find_current_shear_wall_index import find_current_shear_wall_index
 from helpers.xls.find_hear_size import find_head_size
 from helpers.xls.find_required_index import find_required_index
@@ -9,18 +10,18 @@ from helpers.xls.find_required_index import find_required_index
 
 def calculate_shear_walls(count_shear_walls, levels, sheet):
     row_index_for_head_size = 7
-    for current_shear_wall in range(count_shear_walls):
+    for shear_wall_indx in range(count_shear_walls):
         column_index_for_head_size = 6
-        starting_index_for_current_wall = find_current_shear_wall_index(current_shear_wall)
+        starting_index_for_current_wall = find_current_shear_wall_index(shear_wall_indx)
         index_for_Aa1 = starting_index_for_current_wall[0]
         index_for_Aah = starting_index_for_current_wall[1]
-        print(f"<<< SHEAR WALL {current_shear_wall + 1} >>>")
+        print(f"<<< SHEAR WALL {shear_wall_indx + 1} >>>")
         for level in range(levels):
-            print(f'Level:{level + 1}')
+            # print(f'Level:{level + 1}')
             # find choosen from engineer head size for each level and calculate number of rebars in it
             head_height, head_width = find_head_size(row_index_for_head_size, column_index_for_head_size, sheet)
             head_rebars = calculate_rebars_in_head(head_height, head_width)
-            print(f"{head_rebars} number of rebars in head {head_height}, {head_width}")
+            # print(f"{head_rebars} number of rebars in head {head_height}, {head_width}")
             column_index_for_head_size += 10
             if level == 0:
                 step = 0
@@ -34,13 +35,8 @@ def calculate_shear_walls(count_shear_walls, levels, sheet):
             # read excel cell with required reinforcement for each level
             cell_number = 0
             for row in sheet[start_row_index: end_row_index]:
-                current_row_as_string = str(row)
-                dot_index = current_row_as_string.index('.')
-                compare_symbol_index = current_row_as_string.index('>')
-                current_row_as_string = current_row_as_string[dot_index + 1:compare_symbol_index]
+                current_row_as_string = current_row_name(row)
                 for cell in row:
-                    # if cell.value == None:
-                    #     cell.value = 0
                     if cell.value != None:
                         if cell_number == 0 or cell_number == 1:
                             result = calculate_Aa1_Aa2(cell.value, head_rebars)
@@ -62,5 +58,3 @@ def calculate_shear_walls(count_shear_walls, levels, sheet):
                 cell_number += 1
         row_index_for_head_size += 12
 
-
-a=5
