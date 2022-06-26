@@ -12,3 +12,5 @@ def get_Tower_results_from_txt(data):
     flattened_dict = flatten_values_and_reverse_levels_per_wall(max_reinf_per_level)
     result_list = result_list_of_flattened_dict(flattened_dict)
     return result_list
+
+a=5
