@@ -3,7 +3,7 @@ from helpers.xls.find_current_row_name import current_row_name
 from helpers.xls.find_current_shear_wall_index import find_current_shear_wall_index
 from helpers.xls.find_required_index import find_required_index
 
-def paste_Tower_results_in_xls(count_shear_walls, levels, sheet, data):
+def set_Tower_results_in_xls(count_shear_walls, levels, sheet, data):
     row_index_for_head_size = 7
     current_index_of_result_list = 0
     result_Tower = get_Tower_results_from_txt(data)
