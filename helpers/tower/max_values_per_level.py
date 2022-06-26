@@ -11,3 +11,5 @@ def get_max_values_per_level(tower_results):
         max_reinf_per_level[key] = {'Aa1': value['Aa1'][max_index], 'Aa2': value['Aa2'][max_index],
                                     'Aav': value['Aav'][max_index], 'Aah': max(value['Aah'])}
     return max_reinf_per_level
+
+a=5

@@ -42,3 +42,5 @@ def clear_cell(count_shear_walls, levels, sheet):
                         sheet[find_required_index(current_row_as_string, 6)].value = None
                 cell_number += 1
         row_index_for_head_size += 12
+
+a=5

@@ -28,3 +28,5 @@ def read_from_txt_file(data):
         if not quantity_Aah == []:
             Tower_results[match_shear_walls]['Aah'].append(float(''.join(quantity_Aah)))
     return Tower_results
+
+a=5

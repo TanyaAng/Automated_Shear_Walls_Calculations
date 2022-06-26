@@ -63,4 +63,4 @@ def calculate_shear_walls(count_shear_walls, levels, sheet):
         row_index_for_head_size += 12
 
 
-
+a=5
