@@ -3,15 +3,13 @@ from helpers.xls.find_required_index import find_required_index
 
 
 def clear_cell(count_shear_walls, levels, sheet):
-    number_of_shear_walls = count_shear_walls
-    building_levels = levels
     row_index_for_head_size = 7
-    for current_shear_wall in range(number_of_shear_walls):
+    for current_shear_wall in range(count_shear_walls):
         column_index_for_head_size = 6
         starting_index_for_current_wall = find_current_shear_wall_index(current_shear_wall)
         index_for_Aa1 = starting_index_for_current_wall[0]
         index_for_Aah = starting_index_for_current_wall[1]
-        for level in range(building_levels):
+        for level in range(levels):
             column_index_for_head_size += 10
             if level == 0:
                 step = 0

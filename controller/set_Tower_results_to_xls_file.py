@@ -1,23 +1,19 @@
+from controller.get_Tower_results_from_txt import get_Tower_results_from_txt
 from helpers.xls.find_current_shear_wall_index import find_current_shear_wall_index
 from helpers.xls.find_required_index import find_required_index
-from helpers.tower.get_Tower_results_from_txt_file import get_Tower_results_from_txt
-
-
 
 def paste_Tower_results_in_xls(count_shear_walls, levels, sheet, data):
-    number_of_shear_walls = count_shear_walls
-    building_levels = levels
     row_index_for_head_size = 7
     current_index_of_result_list = 0
     result_Tower = get_Tower_results_from_txt(data)
     print(f"result tower: {result_Tower}")
-    for current_shear_wall in range(number_of_shear_walls):
+    for current_shear_wall in range(count_shear_walls):
         column_index_for_head_size = 6
         starting_index_for_current_wall = find_current_shear_wall_index(current_shear_wall)
         index_for_Aa1 = starting_index_for_current_wall[0]
         index_for_Aah = starting_index_for_current_wall[1]
         print(f"<<< SHEAR WALL {current_shear_wall + 1} >>>")
-        for level in range(building_levels):
+        for level in range(levels):
             print(f'Level:{level + 1}')
             column_index_for_head_size += 10
             if level == 0:
