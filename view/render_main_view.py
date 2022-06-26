@@ -1,8 +1,8 @@
 from tkinter import Canvas, Entry, PhotoImage, Button
-from helpers.get_value_from_database import get_value
-from model.calculate_shear_walls import calculate
-from model.clear_sheet_cells_in_xls_file import clear_cells
-from model.get_results_from_txt_file import get_results_from_txt
+from model.get_input import get_input
+from model.calculate import calculate
+from model.clear import clear_cells
+from model.get_tower_results import get_results_from_txt
 
 
 def render_main_view(tk):
@@ -37,8 +37,9 @@ def render_main_view(tk):
 
     img0 = PhotoImage(file=f"view/images/img0.png")
     b0 = Button(image=img0, borderwidth=0, highlightthickness=0,
-                command=lambda: get_value(txt_path, file_path_entry, sheet_name_entry, num_shear_walls_entry,
-                                          levels_entry), relief="flat",
+                command=lambda: get_input(txt_path, file_path_entry, sheet_name_entry,
+                                                      num_shear_walls_entry,
+                                                      levels_entry), relief="flat",
                 background="#C8C8C8", activebackground="#C8C8C8")
     b0.place(x=350, y=366, width=200, height=40)
 

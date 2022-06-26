@@ -1,4 +1,4 @@
-from helpers.rebars.rebars_db import rebar_area_cm2, rebars
+from helpers.rebars.rebars_db import rebars, rebar_area_cm2
 
 
 def calculate_Aa1_Aa2(required_reinforcement, number_of_bars):
