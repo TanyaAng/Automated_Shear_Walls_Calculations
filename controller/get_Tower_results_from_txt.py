@@ -8,10 +8,11 @@ from helpers.tower.read_from_txt_file import read_from_txt_file
 
 def get_Tower_results_from_txt(data):
     Tower_results = read_from_txt_file(data)
+    print(Tower_results)
     max_reinf_per_level = get_max_values_per_level(Tower_results)
+    print(max_reinf_per_level)
     flattened_dict = flatten_values_and_reverse_levels_per_wall(max_reinf_per_level)
     result_list = result_list_of_flattened_dict(flattened_dict)
     create_PDF(max_reinf_per_level)
-    # delete_PDF()
     return result_list
 
