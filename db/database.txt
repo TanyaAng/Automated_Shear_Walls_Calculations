@@ -1,1 +1,0 @@
-{"txt file": "D:\\VIBE PROJECTS\\BG079 - SKOPIE\\CALC\\Building B-07\\BG079 - SKOPIE - 3D B-07-1.txt", "xls file": "D:/VIBE PROJECTS/BG079 - SKOPIE/CALC/Building B-07/Shear walls_Building B-07 - Copy.xlsx", "sheet name": "Shear Walls", "count walls": "9", "count levels": "3"}
