@@ -11,7 +11,6 @@ def get_results_from_txt():
             data = open(txt_path, encoding='utf-8', mode='r')
             paste_Tower_results_in_xls(number_shear_walls, storey_levels, sheet, data)
             workbook.save(file_path)
-            messagebox.showinfo("Info", "Successful")
+            messagebox.showinfo("Information", "Successful")
         except:
             messagebox.showwarning("Warning", "Invalid input")
-

@@ -34,4 +34,5 @@ def get_input(txt_path, file_path, sheet_name, num_shear_walls, levels):
     if is_valid_txt_file_path and is_valid_xls_file_path and is_valid_sheet_name and is_valid_walls_count and is_valid_levels_count:
         with open('db/database.txt', 'w') as file:
             json.dump(user_input, file)
+
         messagebox.showinfo('Information', 'Successful')
