@@ -82,9 +82,10 @@ The application use only the txt file, which can be exported from Radimpex Softw
 
 Tanya Angelova - [LinkedIn](https://www.linkedin.com/in/tanya-angelova-44b03590/) - t.j.angelova@gmail.com
 
-Project Link: [https://github.com/TanyaAng/Automated_Shear_Walls_Calculations]
+Project Link: [Project link]
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 [main-view]: https://user-images.githubusercontent.com/18015470/174805811-5eb5a033-0e9d-4da7-9ad0-f2c18620f20d.PNG
 [LinkedIn]: https://www.linkedin.com/in/tanya-angelova-44b03590/
+[Project link]: https://github.com/TanyaAng/Automated_Shear_Walls_Calculations
