@@ -63,7 +63,7 @@ The application use only the txt file, which can be exported from Radimpex Softw
   - [ ] SHEET NAME - sheet name in xls file (case-sensitive)
   - [ ] SHEAR WALLS COUNT - total number of all walls, represented in specific cells in xls
   - [ ] STOREY LEVELS COUNT - total number of all levels, represented in specific cells in xls
-- [ ] FUNCTIONALLITY BUTTONS
+- [ ] FUNCTIONALITY BUTTONS
   - [ ] GET INPUT - an obligatory action before anything else in functionallity, saves user input in db file
   - [ ] GET TOWER RESULTS - open and read txt file, finds the needed information, save it to xls file and generate additional PDF file with extreme value for each wall per level
   - [ ] CALCULATE - open and read xls file, calculate the required reinforcement for each wall at each level and save the calculations back to xls file
