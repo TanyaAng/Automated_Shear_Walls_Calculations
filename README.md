@@ -57,7 +57,18 @@ The application use only the txt file, which can be exported from Radimpex Softw
 
 
 ### Roadmap
-- [ ] Main Screen
+- [ ] Entry fields
+  - [ ] Txt file path - not obligatory field
+  - [ ] Xls file path - the path to xls file, in which the app will save the calculations
+  - [ ] Sheet name - sheet name in xls file (case-sensitive)
+  - [ ] Shear walls count - total number of all walls, represented in specific cells in xls
+  - [ ] Storey levels count - total number of all levels, represented in specific cells in xls
+- [ ] Main functionallity buttons
+  - [ ] Get Input - an obligatory action before anything else in functionallity, saves user input in db file
+  - [ ] Get Tower Results - open and read txt file, finds the needed information, save it to xls file and generate additional PDF file with extreme value for each wall per level
+  - [ ] Calculate - open and read xls file, calculate the required reinforcement for each wall at each level and save the calculations back to xls file
+  - [ ] Clear cells - clear all cell from automatically pasted information from app
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
