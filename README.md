@@ -28,10 +28,8 @@
 
 
 ### About The Project
-The application use only the txt file, which can be exported from Radimpex Software Tower in Shear Walls calculate mode. From this file the app reads the provided information, which is the square cеntimeters of any type of reinforcement (for example: Aa1=30 cm2, Aa2=30 cm2, Aav=5.62 cm2/m', Aah=3.51 cm2/m') in a shear wall and calculate the needed reinforcement bar diameters and number as explained below:
- - boundary zone lenght or concrete confinements (required reinforcement Aa1 and Aa2): The application open an xls file with previously ordered information about building walls and their input information for calculations (widht, lenght and selected boundary zone lenght). The app iterate through every wall in xls file (respectively in txt file), reads the size information in xls file and the reinforcement information from txt file and makes calculations about how many rebars can be placed in the boundary zone and which bar diameter provides the needed reinforcement. The final result is for example 12N14 and the app saves that information in the xls file. 
- - vertical reiforcement(Aav) and horizontal reinforcement (Aah): The same as previous calculations, except that the needed reinforcement is for linear meter. There are many ways to provide the required reinforcement (for example: for 3.40 cm2/m' as structural engineers we can decide to construct it with N8/15 or N10/20), but the app finds the more economical solution instead of us and saves the information in the xls file. 
-
+  The application use only the txt file, which can be exported from Radimpex Software Tower in Shear Walls calculate mode. From this file the app reads the provided information, which is the square cеntimeters of any type of reinforcement (for example: Aa1=30 cm2, Aa2=30 cm2, Aav=5.62 cm2/m', Aah=3.51 cm2/m') in a shear wall and calculates the needed reinforcement bar diameters.
+  The app iterate through every wall in xls file (respectively in txt file), reads the size information in xls file and the reinforcement information from txt file and makes calculations about the needed reinforcement.
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 #### Build With
