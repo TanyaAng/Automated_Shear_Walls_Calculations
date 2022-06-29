@@ -54,9 +54,19 @@ The application use only the txt file, which can be exported from Radimpex Softw
 ### Usage
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+![Initial Excel](https://user-images.githubusercontent.com/18015470/176461688-ad1d9b7d-e41d-45fa-82cc-9d8ee6d81b23.PNG)
+
+![Usage](https://user-images.githubusercontent.com/18015470/176461647-1d06b50f-b50c-4577-a423-927ee5e7c8e6.PNG)
+
+![After_get_tower_results](https://user-images.githubusercontent.com/18015470/176461744-77fd5684-7b77-4d53-8ba1-55bf2185e9e7.PNG)
+
+![automatically regerated pdf](https://user-images.githubusercontent.com/18015470/176461872-3faf34de-be06-48b8-88c7-c1d80bb81be5.PNG)
+
+![After_calculations](https://user-images.githubusercontent.com/18015470/176461897-11c0afd9-d60b-45cd-a9ce-d6e4f00ee4e3.PNG)
 
 
 ### Roadmap
+
 - [ ] ENTRY FIELDS
   - [ ] TXT FILE PATH - not obligatory field
   - [ ] XLS FILE PATH - the path to xls file, in which the app will save the calculations
