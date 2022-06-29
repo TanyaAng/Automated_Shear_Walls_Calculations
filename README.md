@@ -1,7 +1,7 @@
 
 ## APP FOR AUTOMATED SHEAR WALLS CALCULATIONS
 
-[![Capture][main-view]]
+![Capture][main-view]
 
 
 <details>
