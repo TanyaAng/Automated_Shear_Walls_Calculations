@@ -60,7 +60,7 @@
 
 ![After_calculations](https://user-images.githubusercontent.com/18015470/176461897-11c0afd9-d60b-45cd-a9ce-d6e4f00ee4e3.PNG)
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right"><a href="#top">back to top</a></p>
 
 ### Roadmap
 
