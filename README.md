@@ -30,7 +30,7 @@
 ### About The Project
   The application use only the txt file, which can be exported from Radimpex Software Tower in Shear Walls calculate mode. From this file the app reads the provided information, which is the square cеntimeters of any type of reinforcement (for example: Aa1=30 cm2, Aa2=30 cm2, Aav=5.62 cm2/m', Aah=3.51 cm2/m') in a shear wall and calculates the needed reinforcement bar diameters.
   The app iterate through every wall in xls file (respectively in txt file), reads the size information in xls file and the reinforcement information from txt file and makes calculations about the needed reinforcement.
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right"><a href="#top">back to top</a></p>
 
 #### Build With
 * [Python](https://www.python.org/)
@@ -47,7 +47,7 @@
    ```sh
    pip install -r requirements.txt
    ```
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right"><a href="#top">back to top</a></p>
 
 ### Usage
 ![Initial Excel](https://user-images.githubusercontent.com/18015470/176461688-ad1d9b7d-e41d-45fa-82cc-9d8ee6d81b23.PNG)
@@ -77,11 +77,11 @@
   - [ ] CLEAR CELLS - clear all cell from automatically pasted information from app
 
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right"><a href="#top">back to top</a></p>
 
 ### License
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right"><a href="#top">back to top</a></p>
 
 ### Contact
 
@@ -89,7 +89,7 @@ Tanya Angelova - [LinkedIn](https://www.linkedin.com/in/tanya-angelova-44b03590/
 
 Project Link: [github link]
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right"><a href="#top">back to top</a></p>
 
 [main-view]: https://user-images.githubusercontent.com/18015470/174805811-5eb5a033-0e9d-4da7-9ad0-f2c18620f20d.PNG
 [LinkedIn]: https://www.linkedin.com/in/tanya-angelova-44b03590/
